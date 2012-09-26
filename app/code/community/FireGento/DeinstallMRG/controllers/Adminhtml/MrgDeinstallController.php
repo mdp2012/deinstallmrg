@@ -144,7 +144,7 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
         $files = glob($dir . ' * ', GLOB_MARK);
         foreach ($files as $file) {
             if (substr($file, -1) == ' / ')
-                delTree($file);
+                $this->delTree($file);
             else
                 unlink($file);
         }
