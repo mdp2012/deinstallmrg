@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <mrg_deinstall>
+            <title>Market Ready Germany Deinstaller</title>
+            <sort_order>100</sort_order>
+            <action>adminhtml/mrgDeinstall</action>
+        </mrg_deinstall>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <mrg_deinstall>
+                        <title>Market Ready Germany Deinstaller</title>
+                        <sort_order>100</sort_order>
+                    </mrg_deinstall>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

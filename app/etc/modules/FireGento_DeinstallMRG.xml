@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <FireGento_DeinstallMRG>
+            <active>true</active>
+            <codePool>community</codePool>
+        </FireGento_DeinstallMRG>
+    </modules>
+</config>

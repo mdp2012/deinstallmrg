@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config>
+    <global>
+        <models>
+            <firegento_deinstallmrg>
+                <class>FireGento_DeinstallMRG_Model</class>
+                <resourceModel>firegento_deinstallmrg_resource</resourceModel>
+            </firegento_deinstallmrg>
+            <firegento_deinstallmrg_resource>
+                <class>FireGento_DeinstallMRG_Model_Resource</class>
+            </firegento_deinstallmrg_resource>
+        </models>
+        <blocks>
+            <firegento_deinstallmrg>
+                <class>FireGento_DeinstallMRG_Block</class>
+            </firegento_deinstallmrg>
+        </blocks>
+        <helpers>
+            <firegento_deinstallmrg>
+                <class>FireGento_DeinstallMRG_Helper</class>
+            </firegento_deinstallmrg>
+        </helpers>
+        <resources>
+            <firegento_deinstallmrg>
+                <setup>
+                    <module>FireGento_DeinstallMRG</module>
+                    <class>FireGento_DeinstallMRG_Model_Resource_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </firegento_deinstallmrg>
+        </resources>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <threeAArt_artist before="Mage_Adminhtml">FireGento_DeinstallMRG_Adminhtml</threeAArt_artist>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+</config>
