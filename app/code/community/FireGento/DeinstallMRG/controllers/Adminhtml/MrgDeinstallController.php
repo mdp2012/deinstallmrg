@@ -16,11 +16,13 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
     public function deinstallAllAction()
     {
         $this->removeModules(true);
+        $this->_forward('index');
     }
 
     public function deinstallPartlyAction()
     {
         $this->removeModules();
+        $this->_forward('index');
     }
 
     protected function removeModules($force = false)
