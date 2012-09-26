@@ -12,58 +12,11 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
         $this->renderLayout();
     }
 
-
     public function deinstallAllAction()
     {
         $this->_deinstallAllFiles();
         $this->_deinstallAllDatabaseChanges();
         $this->_forward('index');
-    }
-
-    public function deinstallPartlyAction()
-    {
-        $this->_removeModules();
-        $this->_forward('index');
-    }
-
-    protected function _removeModules($force = false)
-    {
-        if ($this->getRequest()->getMethod() == 'post') {
-            $methods = get_class_methods(get_class($this));
-            foreach ($methods as $method) {
-                if (strpos($method, '_uninstall') === 0) {
-                    $this->$method($force);
-                }
-            }
-        }
-    }
-
-    /**
-     * check wether option is set and remove file
-     */
-    protected function _uninstallMageLocalWishlist($force)
-    {
-        if (
-            $force
-            || $this->getRequest()->getParam('mage_local_wishlist_abstract')
-        ) {
-            // TODO check path
-            unlink(
-                Mage::getBaseDir('code') .
-                '/local/Mage/Wishlist/Block/Abstract.php'
-            );
-        }
-    }
-
-    protected function _uninstallMageLocalProductView($force)
-    {
-        // TODO check wether this should be done
-        if (true) {
-            unlink(
-                Mage::getBaseDir('code') .
-                '/local/Mage/Catalog/Block/Product/Abstract.php'
-            );
-        }
     }
 
     protected function _deinstallAllFiles()
@@ -135,6 +88,7 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
                 Mage::getBaseDir() . DS . str_replace('/', DS, $dir)
             );
         }
+
     }
 
 
@@ -173,26 +127,26 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
     protected function _deinstallAllDatabaseChanges()
     {
         /* @var $installer Mage_Eav_Model_Entity_Setup */
-        $installer = Mage::getResourceModel(
+        $installer = Mage::getModel(
             'eav/entity_setup', 'core_setup'
         );
 
-//app\code\community\Symmetrics\ConfigGerman\sql\config_german_setup\mysql4-install-0.1.0.php
-//TODO — remove the wight attribute out of catalog_product?
-//
-//app\code\community\Symmetrics\ConfigGermanTexts\sql\config_german_texts_setup\mysql4-install-0.1.0.php
-//TODO — $this->updateFooterLinksBlock($data); => Keine Ahnung was das ist, Andi fragen
-//
-//app\code\community\Symmetrics\DeliveryTime\sql\deliverytime_setup\mysql4-install-0.2.1.php
-//TODO — remove delivery_time product attribute from catalog_product?
-//
-//    app\code\community\Symmetrics\Imprint\sql\imprint_setup\mysql4-install-0.2.0.php
-// TODO — Changes a lot of configuration data – needs to be reviewed!
-//
-//    app\code\community\Symmetrics\PdfPrinter\sql\pdfprinter_setup\mysql4-install-0.1.0.php
-// TODO — Remove Mage::getBaseDir('media') . DS . 'pdfprinter'
-//
-//app\code\community\Symmetrics\SecurePassword\sql\securepassword_setup\mysql4-install-0.1.0.php
+        //app\code\community\Symmetrics\ConfigGerman\sql\config_german_setup\mysql4-install-0.1.0.php
+        //TODO — remove the wight attribute out of catalog_product?
+        //
+        //app\code\community\Symmetrics\ConfigGermanTexts\sql\config_german_texts_setup\mysql4-install-0.1.0.php
+        //TODO — $this->updateFooterLinksBlock($data); => Keine Ahnung was das ist, Andi fragen
+        //
+        //app\code\community\Symmetrics\DeliveryTime\sql\deliverytime_setup\mysql4-install-0.2.1.php
+        //TODO — remove delivery_time product attribute from catalog_product?
+        //
+        //    app\code\community\Symmetrics\Imprint\sql\imprint_setup\mysql4-install-0.2.0.php
+        // TODO — Changes a lot of configuration data – needs to be reviewed!
+        //
+        //    app\code\community\Symmetrics\PdfPrinter\sql\pdfprinter_setup\mysql4-install-0.1.0.php
+        // TODO — Remove Mage::getBaseDir('media') . DS . 'pdfprinter'
+        //
+        //app\code\community\Symmetrics\SecurePassword\sql\securepassword_setup\mysql4-install-0.1.0.php
 
         $installer->startSetup();
         $installer->removeAttribute('customer', 'failed_logins');
@@ -201,7 +155,7 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
         $installer->removeAttribute('customer', 'unlock_customer');
 
 
-//app\code\community\Symmetrics\SetMeta\sql\setmeta_setup\mysql4-install-0.2.0.php
+        //app\code\community\Symmetrics\SetMeta\sql\setmeta_setup\mysql4-install-0.2.0.php
         $installer->removeAttribute('catalog_product', 'generate_meta');
         $installer->endSetup();
 
