@@ -27,19 +27,11 @@ class FireGento_DeinstallMRG_Block_MrgDeinstall_Deinstall_Form extends Mage_Admi
                 'label' => 'Information',
                 'text' => Mage::helper('firegento_deinstallmrg')
                 ->__(
-                    'Removed all taxes and added german taxes, ' .
-                    'changed locale, timezone, currency, time format, ... ' .
-                    '<br />' .
-                    'Changed the tax calculation, tax applyiance'
+                    'Added Taxes, ' .
+                    'we don\'t remove the CMS blocks!
+                    <br />
+                    Enabled Agreements'
                 )
-            )
-        );
-
-        $fieldset = $form->addFieldset(
-            'deinstallmrg_mage_local',
-            array(
-                'legend' => Mage::helper('firegento_deinstallmrg')
-                ->__('Mage app/local changes')
             )
         );
 
@@ -90,6 +82,22 @@ class FireGento_DeinstallMRG_Block_MrgDeinstall_Deinstall_Form extends Mage_Admi
             array(
                 'legend' => Mage::helper('firegento_deinstallmrg')
                 ->__('Symmetrics ConfigGerman')
+            )
+        );
+
+        $fieldset->addField(
+            'symmetrics_configGerman_note', 'note', array(
+                'label' => 'Information',
+                'text' => Mage::helper('firegento_deinstallmrg')
+                ->__(
+                    'Removed all taxes and added german taxes, ' .
+                    '<br />' .
+                    'changed locale, timezone, currency, time format, ... ' .
+                    '<br />' .
+                    'Changed the tax calculation, tax applyiance' .
+                    '<br />' .
+                    'disabled a lot of shipping methods'
+                )
             )
         );
 

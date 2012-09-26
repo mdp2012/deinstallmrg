@@ -23,6 +23,16 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
     }
 
 
+    public function deinstallAllAction()
+    {
+
+    }
+
+    public function deinstallPartlyAction()
+    {
+
+    }
+
     /**
      * check wether option is set and remove file
      */
