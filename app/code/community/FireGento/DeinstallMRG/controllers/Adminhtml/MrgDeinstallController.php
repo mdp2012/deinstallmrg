@@ -89,6 +89,7 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
             );
         }
 
+        $this->_getSession()->addSuccess('Deleted all MRG files.');
     }
 
 
@@ -126,6 +127,8 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
 
     protected function _deinstallAllDatabaseChanges()
     {
+        //TODO delete core_resource entries
+
         /* @var $installer Mage_Eav_Model_Entity_Setup */
         $installer = Mage::getModel(
             'eav/entity_setup', 'core_setup'
@@ -159,7 +162,7 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
         $installer->removeAttribute('catalog_product', 'generate_meta');
         $installer->endSetup();
 
-
+        $this->_getSession()->addSuccess('Reverted database changes.');
     }
 
 }
