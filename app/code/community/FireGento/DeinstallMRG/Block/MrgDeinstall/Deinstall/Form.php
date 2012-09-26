@@ -1,5 +1,6 @@
 <?php
-class FireGento_DeinstallMRG_Block_MrgDeinstall_Deinstall_Form extends Mage_Adminhtml_Block_Widget_Form
+class FireGento_DeinstallMRG_Block_MrgDeinstall_Deinstall_Form
+    extends Mage_Adminhtml_Block_Widget_Form
 {
     protected function _prepareForm()
     {
