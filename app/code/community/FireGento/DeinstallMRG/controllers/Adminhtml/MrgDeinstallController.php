@@ -85,7 +85,6 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
             'app/code/local/Symmetrics/DomPdf',
             'app/design/adminhtml/default/default/template/symmetrics/imprint',
             'app/design/adminhtml/default/default/template/symmetrics/invoice',
-            'app/design/adminhtml/default/default/template/symmetrics/imprint',
             'app/design/adminhtml/default/default/template/tweaksgerman',
             'app/design/frontend/default/default/layout/securepassword.xml',
             'app/design/frontend/default/default/layout/stockindicator.xml',
@@ -141,13 +140,18 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
 
     private function delTree($dir)
     {
-        $files = glob($dir . ' * ', GLOB_MARK);
-        foreach ($files as $file) {
-            if (substr($file, -1) == ' / ')
-                $this->delTree($file);
-            else
-                unlink($file);
+        if (is_file($dir)) {
+            unlink($dir);
+            return;
         }
+
+        foreach (new DirectoryIterator($dir) as $directory) {
+            /* @var $directory DirectoryIterator */
+            if (!$directory->isDot()) {
+                $this->delTree($directory->getRealPath());
+            }
+        }
+
         rmdir($dir);
     }
 
