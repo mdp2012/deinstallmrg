@@ -35,6 +35,14 @@ class FireGento_DeinstallMRG_Block_MrgDeinstall_Deinstall_Form extends Mage_Admi
             )
         );
 
+        $fieldset = $form->addFieldset(
+            'deinstallmrg_mage_local',
+            array(
+                'legend' => Mage::helper('firegento_deinstallmrg')
+                ->__('Mage app/local changes')
+            )
+        );
+
         $fieldset->addField(
             'mage_local_product_abstract', 'checkbox', array(
                 'label' => Mage::helper('firegento_deinstallmrg')
