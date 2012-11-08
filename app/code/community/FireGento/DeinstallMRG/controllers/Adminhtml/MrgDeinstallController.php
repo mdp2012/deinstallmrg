@@ -12,9 +12,9 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
         $this->renderLayout();
     }
 
-    public function deinstallPartly()
+    public function deinstallPartlyAction()
     {
-
+        $this->_deinstallPartly();
     }
 
     public function deinstallAllAction()
@@ -24,10 +24,10 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
         $this->_forward('index');
     }
 
-    protected function _deinstallPartlyFiles()
+    protected function _deinstallPartly()
     {
         foreach ($this->getRequest()->getParams() as $param) {
-            $files = $this->_getHelper('firegento_deinstallmrg')
+            $files = Mage::helper('firegento_deinstallmrg')
                 ->getFilesByName($param);
             $this->delTree($files);
         }
@@ -37,7 +37,7 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
     protected function _deinstallAllFiles()
     {
         $directoriesToDelete
-            = $this->_getHelper('firegento_deinstallmrg')
+            = Mage::helper('firegento_deinstallmrg')
             ->getFiles();
 
         foreach ($directoriesToDelete as $dir) {
