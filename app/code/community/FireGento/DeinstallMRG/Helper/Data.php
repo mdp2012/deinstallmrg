@@ -87,7 +87,7 @@ class FireGento_DeinstallMRG_Helper_Data extends Mage_Core_Helper_Abstract
             if (is_array($this->_directories[$name])) {
                 return $this->_directories[$name];
             } else {
-                return ($this->_directories[$name]);
+                return array($this->_directories[$name]);
             }
         }
     }

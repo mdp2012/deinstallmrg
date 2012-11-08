@@ -37,7 +37,7 @@ class FireGento_DeinstallMRG_Block_MrgDeinstall_Deinstall_Form_Container
                 ->__(
                     'Are you sure you want to uninstall only a few MRG changes?'
                 )
-                . '\', \'' . $this->getUrl('*/*/deinstallPartly') . '\')',
+                . '\', editForm.submit())',
             )
         );
     }

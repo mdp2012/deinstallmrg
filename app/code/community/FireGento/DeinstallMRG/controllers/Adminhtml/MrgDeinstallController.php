@@ -15,10 +15,12 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
     public function deinstallPartlyAction()
     {
         $this->_deinstallPartly();
+        $this->_forward('index');
     }
 
     public function deinstallAllAction()
     {
+        // todo check form_key
         $this->_deinstallAllFiles();
         $this->_deinstallAllDatabaseChanges();
         $this->_forward('index');
@@ -26,12 +28,16 @@ class FireGento_DeinstallMRG_Adminhtml_MrgDeinstallController
 
     protected function _deinstallPartly()
     {
-        foreach ($this->getRequest()->getParams() as $param) {
+        // todo check form_key
+        foreach (array_keys($this->getRequest()->getPost()) as $param) {
             $files = Mage::helper('firegento_deinstallmrg')
                 ->getFilesByName($param);
-            $this->delTree($files);
+            if (is_array($files)) {
+                foreach ($files as $file) {
+                    $this->delTree($file);
+                }
+            }
         }
-
     }
 
     protected function _deinstallAllFiles()
